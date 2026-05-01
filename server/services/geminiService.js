@@ -61,7 +61,6 @@ class GeminiService {
       ? `${systemPrompt}\n\nUser Query: ${prompt}`
       : prompt;
 
-    let lastError = null;
 
     // Try each available key
     for (let attempt = 0; attempt < this.clients.length; attempt++) {
@@ -95,7 +94,6 @@ class GeminiService {
           keyUsed: keyIndex + 1,
         };
       } catch (error) {
-        lastError = error;
         const errMsg = error.message || '';
 
         // Check if it's a quota/rate limit error (429)
@@ -124,7 +122,7 @@ class GeminiService {
     });
 
     throw new Error(
-      `All ${this.clients.length} Gemini API key(s) exhausted. Cooldowns: ${cooldowns.join(', ')}`
+      `All ${this.clients.length} Gemini API key(s) exhausted. Cooldowns: ${cooldowns.join(', ')}`,
     );
   }
 }

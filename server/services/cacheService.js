@@ -41,7 +41,7 @@ class CacheService {
           createdAt: new Date(),
           expiresAt: new Date(Date.now() + 24 * 60 * 60 * 1000),
         },
-        { upsert: true, new: true }
+        { upsert: true, new: true },
       );
     } catch (error) {
       console.error('Cache write error:', error.message);

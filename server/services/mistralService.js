@@ -54,10 +54,10 @@ class MistralService {
         const status = response.status;
 
         if (status === 429) {
-          throw new Error(`Mistral 429: Rate limit exceeded`);
+          throw new Error('Mistral 429: Rate limit exceeded');
         }
         if (status === 401) {
-          throw new Error(`Mistral 401: Invalid API key`);
+          throw new Error('Mistral 401: Invalid API key');
         }
 
         throw new Error(`Mistral API error ${status}: ${errorBody}`);

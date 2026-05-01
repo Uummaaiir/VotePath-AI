@@ -103,7 +103,6 @@ const chat = asyncHandler(async (req, res) => {
  */
 const getChatHistory = asyncHandler(async (req, res) => {
   const chatHistory = await ChatHistory.findOne({ userId: req.params.userId });
-  
   res.json({
     success: true,
     data: chatHistory ? chatHistory.messages : [],

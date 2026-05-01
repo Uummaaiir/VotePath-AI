@@ -97,7 +97,7 @@ export default function DashboardLayout() {
           </div>
 
           {/* Center: Desktop Navigation Links */}
-          <nav className="hidden lg:flex flex-1 justify-center items-center px-8 space-x-1">
+          <nav className="hidden lg:flex flex-1 justify-center items-center px-8 space-x-1" aria-label="Main dashboard navigation">
             {NAV_ITEMS.map(({ path, iconEmoji, label, end }) => (
               <NavLink key={path} to={path} end={end}
                 className={({ isActive }) =>
@@ -124,8 +124,12 @@ export default function DashboardLayout() {
 
           {/* Right: Theme Toggle, User Profile & Hamburger */}
           <div className="flex items-center gap-2">
-            <button onClick={toggleTheme} className="p-2 rounded-lg text-text-muted hover:bg-bg-elevated hover:text-accent transition-colors" title="Toggle Theme">
-              {isDarkMode ? <FiSun size={18} /> : <FiMoon size={18} />}
+            <button
+              onClick={toggleTheme}
+              className="p-2 rounded-lg text-text-muted hover:bg-bg-elevated hover:text-accent transition-colors"
+              aria-label={isDarkMode ? 'Switch to light mode' : 'Switch to dark mode'}
+            >
+              {isDarkMode ? <FiSun size={18} aria-hidden="true" /> : <FiMoon size={18} aria-hidden="true" />}
             </button>
             <div className="hidden md:flex items-center gap-3 pl-2 border-l border-border ml-1">
               <div className="text-right">
@@ -135,10 +139,12 @@ export default function DashboardLayout() {
               <NavLink to="/dashboard/profile" className="hover:opacity-80 transition-opacity" title="My Profile">
                 <UserAvatar />
               </NavLink>
-              <button onClick={handleLogout}
+              <button
+                onClick={handleLogout}
                 className="p-2 rounded-lg text-text-muted hover:text-accent hover:bg-accent/10 transition-colors"
-                title="Logout">
-                <FiLogOut size={16} />
+                aria-label="Log out"
+              >
+                <FiLogOut size={16} aria-hidden="true" />
               </button>
             </div>
 
@@ -146,8 +152,11 @@ export default function DashboardLayout() {
             <motion.button
               onClick={() => setMobileMenuOpen(true)}
               whileTap={{ scale: 0.8 }}
+              aria-label="Open navigation menu"
+              aria-expanded={mobileMenuOpen}
+              aria-controls="mobile-nav-sidebar"
               className="lg:hidden p-2 rounded-lg text-text-secondary hover:bg-bg-elevated hover:text-text-primary transition-colors">
-              <FiMenu size={22} />
+              <FiMenu size={22} aria-hidden="true" />
             </motion.button>
           </div>
         </div>
@@ -176,6 +185,10 @@ export default function DashboardLayout() {
 
             {/* Sidebar Panel */}
             <motion.aside
+              id="mobile-nav-sidebar"
+              role="dialog"
+              aria-modal="true"
+              aria-label="Navigation menu"
               initial={{ x: -300, opacity: 0.5 }}
               animate={{ x: 0, opacity: 1 }}
               exit={{ x: -300, opacity: 0 }}
@@ -205,8 +218,9 @@ export default function DashboardLayout() {
                   onClick={() => setMobileMenuOpen(false)}
                   whileTap={{ scale: 0.8, rotate: 90 }}
                   whileHover={{ rotate: 90 }}
+                  aria-label="Close navigation menu"
                   className="p-2 rounded-xl text-text-muted hover:bg-bg-elevated hover:text-primary transition-colors">
-                  <FiX size={20} />
+                  <FiX size={20} aria-hidden="true" />
                 </motion.button>
               </div>
 
@@ -232,6 +246,7 @@ export default function DashboardLayout() {
                 initial="hidden"
                 animate="show"
                 exit="exit"
+                aria-label="Mobile dashboard navigation"
                 className="flex-1 py-3 px-4 space-y-0.5 overflow-y-auto">
                 {NAV_ITEMS.map(({ path, iconEmoji, label, end }) => (
                   <motion.div key={path} variants={sidebarItem}>

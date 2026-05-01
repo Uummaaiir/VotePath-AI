@@ -71,12 +71,19 @@ const TESTIMONIALS = [
 export default function LandingPage() {
   return (
     <div className="min-h-screen bg-bg-dark relative overflow-x-hidden">
+      {/* ====== SKIP NAVIGATION (WCAG 2.4.1) ====== */}
+      <a
+        href="#main-content"
+        className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[100] focus:px-4 focus:py-2 focus:rounded-lg focus:bg-primary focus:text-white focus:font-medium focus:text-sm"
+      >
+        Skip to main content
+      </a>
 
       {/* ====== NAVBAR ====== */}
       <header className="sticky top-0 z-40 bg-bg-card/80 backdrop-blur-xl border-b border-border/50 shadow-sm">
-        <div className="max-w-6xl mx-auto px-5 h-16 flex items-center justify-between">
+        <nav className="max-w-6xl mx-auto px-5 h-16 flex items-center justify-between" aria-label="Main navigation">
           <div className="flex items-center gap-3">
-            <div className="w-9 h-9 rounded-xl bg-bg-elevated flex items-center justify-center text-sm shadow-lg shadow-primary/20">
+            <div className="w-9 h-9 rounded-xl bg-bg-elevated flex items-center justify-center text-sm shadow-lg shadow-primary/20" aria-hidden="true">
               🗳️
             </div>
             <div>
@@ -89,13 +96,14 @@ export default function LandingPage() {
               Sign In
             </Link>
             <Link to="/auth" className="btn-primary text-xs px-4 py-2">
-              Get Started <FiChevronRight className="inline ml-0.5" size={14} />
+              Get Started <FiChevronRight className="inline ml-0.5" aria-hidden="true" size={14} />
             </Link>
           </div>
-        </div>
+        </nav>
       </header>
 
       {/* ====== HERO ====== */}
+      <main id="main-content" role="main">
       <section className="relative z-10 px-5 pt-16 pb-20 sm:pt-24 sm:pb-28">
         <div className="max-w-4xl mx-auto text-center">
           <motion.div initial={{ scale: 0 }} animate={{ scale: 1 }}
@@ -355,6 +363,7 @@ export default function LandingPage() {
           </div>
         </div>
       </footer>
+      </main>
     </div>
   );
 }

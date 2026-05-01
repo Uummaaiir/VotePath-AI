@@ -12,7 +12,7 @@ const startServer = (port) => {
     console.log(`\n🚀 VotePath AI Server running on port ${port}`);
     console.log(`📡 Health check: http://localhost:${port}/api/health`);
     console.log(`🌍 Environment: ${process.env.NODE_ENV || 'development'}`);
-    console.log(`🔐 Auth: JWT + Google OAuth enabled\n`);
+    console.log('🔐 Auth: JWT + Google OAuth enabled\n');
 
     // Check AI availability on startup
     aiService.getStatus().then(status => {

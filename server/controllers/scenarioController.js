@@ -62,7 +62,7 @@ const FALLBACK_SCENARIOS = {
       { number: 6, action: 'Vote on Election Day', details: 'Carry Voter ID, reach booth early', link: '' },
     ],
     documentsNeeded: ['Passport photo', 'Aadhaar Card', 'Age proof (birth certificate/10th marksheet)'],
-    estimatedTime: '15-30 days', helplineNumber: '1950', nextAction: 'Start registration at voters.eci.gov.in'
+    estimatedTime: '15-30 days', helplineNumber: '1950', nextAction: 'Start registration at voters.eci.gov.in',
   },
   lost_voter_id: {
     scenario: 'lost_voter_id', title: 'Lost Voter ID — Get a Replacement',
@@ -75,7 +75,7 @@ const FALLBACK_SCENARIOS = {
       { number: 5, action: 'Download e-EPIC', details: 'Get digital copy immediately after verification', link: 'https://voters.eci.gov.in/' },
     ],
     documentsNeeded: ['FIR copy (if filed)', 'Aadhaar Card', 'Passport photo'],
-    estimatedTime: '7-15 days', helplineNumber: '1950', nextAction: 'Visit voters.eci.gov.in and apply for duplicate'
+    estimatedTime: '7-15 days', helplineNumber: '1950', nextAction: 'Visit voters.eci.gov.in and apply for duplicate',
   },
   name_mismatch: {
     scenario: 'name_mismatch', title: 'Name Mismatch in Voter Records',
@@ -87,7 +87,7 @@ const FALLBACK_SCENARIOS = {
       { number: 4, action: 'Submit & Track', details: 'Note reference number and track status', link: '' },
     ],
     documentsNeeded: ['Aadhaar Card', 'PAN Card', 'Passport', 'Any ID with correct name'],
-    estimatedTime: '15-30 days', helplineNumber: '1950', nextAction: 'Fill Form 8 on NVSP portal'
+    estimatedTime: '15-30 days', helplineNumber: '1950', nextAction: 'Fill Form 8 on NVSP portal',
   },
   nri_voting: {
     scenario: 'nri_voting', title: 'NRI Voting Registration',
@@ -100,7 +100,7 @@ const FALLBACK_SCENARIOS = {
       { number: 5, action: 'Vote in Person', details: 'Currently, NRIs must vote in person at their respective constituency.', link: '' },
     ],
     documentsNeeded: ['Indian Passport (Front & Back)', 'Valid Visa endorsement', 'Recent Photo'],
-    estimatedTime: '30-45 days', helplineNumber: '1950', nextAction: 'Fill Form 6A on NVSP portal'
+    estimatedTime: '30-45 days', helplineNumber: '1950', nextAction: 'Fill Form 6A on NVSP portal',
   },
   pwd_voting: {
     scenario: 'pwd_voting', title: 'Voting with a Disability (PwD)',
@@ -112,7 +112,7 @@ const FALLBACK_SCENARIOS = {
       { number: 4, action: 'Vote', details: 'Use priority queues or home voting to cast your vote.', link: '' },
     ],
     documentsNeeded: ['Disability Certificate', 'Voter ID Card'],
-    estimatedTime: '7-10 days', helplineNumber: '1950', nextAction: 'Download the Saksham ECI App'
+    estimatedTime: '7-10 days', helplineNumber: '1950', nextAction: 'Download the Saksham ECI App',
   },
   shift_constituency: {
     scenario: 'shift_constituency', title: 'Changing Constituency',
@@ -125,7 +125,7 @@ const FALLBACK_SCENARIOS = {
       { number: 5, action: 'Verification', details: 'BLO will visit the new address for verification.', link: '' },
     ],
     documentsNeeded: ['Address Proof (New Address)', 'Old Voter ID'],
-    estimatedTime: '15-30 days', helplineNumber: '1950', nextAction: 'Fill Form 8 for Shifting'
+    estimatedTime: '15-30 days', helplineNumber: '1950', nextAction: 'Fill Form 8 for Shifting',
   },
   aadhaar_link: {
     scenario: 'aadhaar_link', title: 'Linking Aadhaar with Voter ID',
@@ -137,7 +137,7 @@ const FALLBACK_SCENARIOS = {
       { number: 4, action: 'Confirmation', details: 'Receive a reference number for tracking.', link: '' },
     ],
     documentsNeeded: ['Aadhaar Card Number', 'Voter ID (EPIC)'],
-    estimatedTime: 'Instant / 1 day', helplineNumber: '1950', nextAction: 'Submit Form 6B online'
+    estimatedTime: 'Instant / 1 day', helplineNumber: '1950', nextAction: 'Submit Form 6B online',
   },
   missed_registration: {
     scenario: 'missed_registration', title: 'Missed Registration Deadline',
@@ -149,7 +149,7 @@ const FALLBACK_SCENARIOS = {
       { number: 4, action: 'Plan Ahead', details: 'Electoral rolls are revised twice a year (Jan 1 & Jul 1). Register before the next qualifying date.', link: '' },
     ],
     documentsNeeded: ['Form 6', 'ID & Address Proof'],
-    estimatedTime: 'Next revision cycle', helplineNumber: '1950', nextAction: 'Submit Form 6 immediately'
+    estimatedTime: 'Next revision cycle', helplineNumber: '1950', nextAction: 'Submit Form 6 immediately',
   },
   no_documents: {
     scenario: 'no_documents', title: 'Voting Without Standard Documents',
@@ -161,7 +161,7 @@ const FALLBACK_SCENARIOS = {
       { number: 4, action: 'On Voting Day', details: 'Carry any available photo ID. The presiding officer has final authority to verify identity.', link: '' },
     ],
     documentsNeeded: ['Any one of the 12 ECI-approved photo IDs'],
-    estimatedTime: 'Same day', helplineNumber: '1950', nextAction: 'Gather any available photo ID before election day'
+    estimatedTime: 'Same day', helplineNumber: '1950', nextAction: 'Gather any available photo ID before election day',
   },
   senior_citizen_voting: {
     scenario: 'senior_citizen_voting', title: 'Senior Citizen Voting (80+)',
@@ -173,7 +173,7 @@ const FALLBACK_SCENARIOS = {
       { number: 4, action: 'Companion Allowed', details: 'You may bring a companion to assist you in the voting compartment.', link: '' },
     ],
     documentsNeeded: ['Voter ID Card', 'Form 12D (for home voting)'],
-    estimatedTime: '5 days after notification', helplineNumber: '1950', nextAction: 'Contact your BLO after election is announced'
+    estimatedTime: '5 days after notification', helplineNumber: '1950', nextAction: 'Contact your BLO after election is announced',
   },
   voter_id_correction: {
     scenario: 'voter_id_correction', title: 'Correcting Voter ID Details',
@@ -185,7 +185,7 @@ const FALLBACK_SCENARIOS = {
       { number: 4, action: 'Track Application', details: 'Use the reference ID to check correction status online.', link: '' },
     ],
     documentsNeeded: ['Correct ID proof', 'Passport photo (if photo correction)', 'Birth certificate (if DOB correction)'],
-    estimatedTime: '15-30 days', helplineNumber: '1950', nextAction: 'Submit Form 8 with correct documents'
+    estimatedTime: '15-30 days', helplineNumber: '1950', nextAction: 'Submit Form 8 with correct documents',
   },
   election_day_guide: {
     scenario: 'election_day_guide', title: 'Election Day — What to Expect',
@@ -200,7 +200,7 @@ const FALLBACK_SCENARIOS = {
       { number: 7, action: 'Exit', details: 'Leave the booth quietly. Do not discuss your vote inside the premises.', link: '' },
     ],
     documentsNeeded: ['Voter ID / Any of 12 approved photo IDs'],
-    estimatedTime: '15-45 minutes', helplineNumber: '1950', nextAction: 'Find your booth location beforehand'
+    estimatedTime: '15-45 minutes', helplineNumber: '1950', nextAction: 'Find your booth location beforehand',
   },
   postal_ballot: {
     scenario: 'postal_ballot', title: 'Postal Ballot Voting',
@@ -212,7 +212,7 @@ const FALLBACK_SCENARIOS = {
       { number: 4, action: 'Mark & Return', details: 'Fill your ballot in secrecy, seal it, and hand it to the officer.', link: '' },
     ],
     documentsNeeded: ['Form 12 / 12D', 'Voter ID', 'Service ID (if applicable)'],
-    estimatedTime: 'Within notification period', helplineNumber: '1950', nextAction: 'Apply after election notification'
+    estimatedTime: 'Within notification period', helplineNumber: '1950', nextAction: 'Apply after election notification',
   },
   voter_list_deletion: {
     scenario: 'voter_list_deletion', title: 'Name Deleted from Voter List',
@@ -224,7 +224,7 @@ const FALLBACK_SCENARIOS = {
       { number: 4, action: 'File Complaint', details: 'If wrongfully deleted, complain to ERO or use cVIGIL app.', link: '' },
     ],
     documentsNeeded: ['Form 6', 'ID Proof', 'Address Proof'],
-    estimatedTime: '15-30 days', helplineNumber: '1950', nextAction: 'Search your name and re-register immediately'
+    estimatedTime: '15-30 days', helplineNumber: '1950', nextAction: 'Search your name and re-register immediately',
   },
   complaint_filing: {
     scenario: 'complaint_filing', title: 'Filing an Election Complaint',
@@ -237,7 +237,7 @@ const FALLBACK_SCENARIOS = {
       { number: 5, action: 'Alternative Channels', details: 'Call 1950 or visit the local Returning Officer.', link: '' },
     ],
     documentsNeeded: ['cVIGIL App', 'Photo/Video evidence'],
-    estimatedTime: 'Action within 100 minutes', helplineNumber: '1950', nextAction: 'Install cVIGIL from your app store'
+    estimatedTime: 'Action within 100 minutes', helplineNumber: '1950', nextAction: 'Install cVIGIL from your app store',
   },
   evm_vvpat_info: {
     scenario: 'evm_vvpat_info', title: 'Understanding EVM & VVPAT',
@@ -250,7 +250,7 @@ const FALLBACK_SCENARIOS = {
       { number: 5, action: 'Security Features', details: 'EVMs use one-time programmable chips, are tested before every election, and stored in strong rooms.', link: '' },
     ],
     documentsNeeded: [],
-    estimatedTime: 'Educational — no action needed', helplineNumber: '1950', nextAction: 'Watch ECI\'s EVM demo video'
+    estimatedTime: 'Educational — no action needed', helplineNumber: '1950', nextAction: 'Watch ECI\'s EVM demo video',
   },
   model_code_conduct: {
     scenario: 'model_code_conduct', title: 'Model Code of Conduct (MCC)',
@@ -263,7 +263,7 @@ const FALLBACK_SCENARIOS = {
       { number: 5, action: 'Enforcement', details: 'ECI can censure, ban campaigning, or refer to courts for violations.', link: '' },
     ],
     documentsNeeded: [],
-    estimatedTime: 'Educational', helplineNumber: '1950', nextAction: 'Learn your rights as a voter'
+    estimatedTime: 'Educational', helplineNumber: '1950', nextAction: 'Learn your rights as a voter',
   },
   multiple_entries: {
     scenario: 'multiple_entries', title: 'Duplicate / Multiple Voter Entries',
@@ -275,7 +275,7 @@ const FALLBACK_SCENARIOS = {
       { number: 4, action: 'ERO Action', details: 'The Electoral Registration Officer will verify and remove the duplicate.', link: '' },
     ],
     documentsNeeded: ['Both EPIC numbers', 'ID Proof'],
-    estimatedTime: '15-30 days', helplineNumber: '1950', nextAction: 'File Form 7 on NVSP portal'
+    estimatedTime: '15-30 days', helplineNumber: '1950', nextAction: 'File Form 7 on NVSP portal',
   },
   overseas_voting_bill: {
     scenario: 'overseas_voting_bill', title: 'Remote Voting for NRIs (Upcoming)',
@@ -287,7 +287,7 @@ const FALLBACK_SCENARIOS = {
       { number: 4, action: 'Stay Updated', details: 'Follow ECI announcements for when remote voting becomes law.', link: 'https://eci.gov.in/' },
     ],
     documentsNeeded: ['Indian Passport', 'Form 6A'],
-    estimatedTime: 'Pending legislation', helplineNumber: '1950', nextAction: 'Register as Overseas Elector now'
+    estimatedTime: 'Pending legislation', helplineNumber: '1950', nextAction: 'Register as Overseas Elector now',
   },
   transgender_voter: {
     scenario: 'transgender_voter', title: 'Transgender Voter Registration',
@@ -299,7 +299,7 @@ const FALLBACK_SCENARIOS = {
       { number: 4, action: 'ECI Support', details: 'ECI has mandated special sensitization for booth staff. Report issues to ERO.', link: '' },
     ],
     documentsNeeded: ['Any valid ID proof', 'Photo', 'Address proof'],
-    estimatedTime: '15-30 days', helplineNumber: '1950', nextAction: 'Register using Form 6 with third gender option'
+    estimatedTime: '15-30 days', helplineNumber: '1950', nextAction: 'Register using Form 6 with third gender option',
   },
 };
 

@@ -41,14 +41,14 @@ describe('Edge Cases — Input Validation', () => {
       expect(res.body.success).toBe(false);
     });
 
-    it('should handle empty quiz answers array', async () => {
+    it('should reject empty quiz answers array with 400', async () => {
       const res = await request(app)
         .post('/api/quiz/submit')
         .set('Authorization', `Bearer ${token}`)
         .send({ userId, answers: [] });
 
-      expect(res.status).toBe(200);
-      expect(res.body.data.score).toBe(0);
+      expect(res.status).toBe(400);
+      expect(res.body.success).toBe(false);
     });
   });
 

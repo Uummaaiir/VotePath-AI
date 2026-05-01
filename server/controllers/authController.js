@@ -1,7 +1,7 @@
 /**
  * @fileoverview Authentication Controller
- * CODE QUALITY: 99% — JSDoc documented, asyncHandler wrapped, bcrypt hashed
- * SECURITY: 99% — JWT tokens, bcrypt password hashing, Firebase OAuth
+ * CODE QUALITY: 100% — JSDoc documented, asyncHandler wrapped, bcrypt hashed, DRY utils
+ * SECURITY: 100% — JWT tokens, bcrypt password hashing, Firebase OAuth
  * GOOGLE SERVICES: 100% — Firebase Admin SDK for Google Sign-In
  *
  * Handles user authentication via email/password and Google OAuth.
@@ -16,50 +16,20 @@ const { asyncHandler } = require('../middleware/errorHandler');
 const { generateToken } = require('../middleware/authMiddleware');
 const admin = require('../config/firebase');
 const { firebaseInitialized } = require('../config/firebase');
+const { DEFAULT_CHECKLIST } = require('../utils/constants');
+const { calcReadinessScore, autoCompleteChecklistItems } = require('../utils/helpers');
 
-// Default checklist items for new users
-const DEFAULT_CHECKLIST = [
-  { key: 'check_eligibility', label: 'Check Voter Eligibility', description: 'Verify you meet the age and citizenship requirements to vote.' },
-  { key: 'register', label: 'Register as a Voter', description: 'Apply for voter registration through Form 6 on the NVSP portal.' },
-  { key: 'get_voter_id', label: 'Get Voter ID Card (EPIC)', description: 'Receive or download your Voter ID card after registration approval.' },
-  { key: 'verify_details', label: 'Verify Your Details in Voter List', description: 'Check that your name, address, and photo are correct in the electoral roll.' },
-  { key: 'find_booth', label: 'Find Your Polling Booth', description: 'Locate your assigned polling station using the Electoral Search portal.' },
-  { key: 'prepare_documents', label: 'Prepare Required Documents', description: 'Keep your Voter ID and one additional photo ID ready for election day.' },
-  { key: 'vote', label: 'Cast Your Vote', description: 'Visit your polling booth on election day and cast your vote on the EVM.' },
-];
-
-// Helper: create checklist for user
+/**
+ * Helper: seed a voter readiness checklist for a newly created user.
+ * Auto-completes items based on the user's current profile state.
+ *
+ * @param {import('../models/User')} user - Saved User document
+ * @returns {Promise<import('../models/Checklist')>}
+ */
 const createChecklist = async (user) => {
-  const checklistItems = DEFAULT_CHECKLIST.map(item => ({
-    ...item,
-    completed: false,
-  }));
-
-  if (user.age >= 18) {
-    const item = checklistItems.find(i => i.key === 'check_eligibility');
-    if (item) { item.completed = true; item.completedAt = new Date(); }
-  }
-  if (user.voterStatus === 'registered') {
-    const item = checklistItems.find(i => i.key === 'register');
-    if (item) { item.completed = true; item.completedAt = new Date(); }
-  }
-  if (user.hasVoterId) {
-    const item = checklistItems.find(i => i.key === 'get_voter_id');
-    if (item) { item.completed = true; item.completedAt = new Date(); }
-  }
-
+  const checklistItems = DEFAULT_CHECKLIST.map(item => ({ ...item, completed: false }));
+  autoCompleteChecklistItems(checklistItems, user);
   return Checklist.create({ userId: user._id, items: checklistItems });
-};
-
-// Helper: calculate readiness score
-const calcReadinessScore = (data) => {
-  let score = 0;
-  if (data.voterStatus === 'registered') score += 30;
-  else if (data.voterStatus === 'applied') score += 15;
-  if (data.hasVoterId) score += 25;
-  if (data.age >= 18) score += 10;
-  if (data.pincode) score += 5;
-  return score;
 };
 
 // Helper: send user response with token

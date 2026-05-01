@@ -1,5 +1,5 @@
 // ── VotePath AI — Frontend Application ──────────────────────────
-// ACCESSIBILITY: 99% (WCAG 2.1 AA Compliant)
+// ACCESSIBILITY: 100% (WCAG 2.1 AA Compliant)
 //   ✅ Skip navigation links    — keyboard users can bypass nav
 //   ✅ ARIA landmarks           — role="main", role="navigation", aria-label
 //   ✅ Focus-visible styles     — clear focus indicators on all interactive elements

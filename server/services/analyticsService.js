@@ -40,28 +40,39 @@ class AnalyticsService {
   _categorizeQuery(query) {
     const lower = (query || '').toLowerCase();
 
-    if (lower.includes('register') || lower.includes('form 6') || lower.includes('enrollment'))
+    if (lower.includes('register') || lower.includes('form 6') || lower.includes('enrollment')) {
       return 'registration';
-    if (lower.includes('voter id') || lower.includes('epic') || lower.includes('voter card'))
+    }
+    if (lower.includes('voter id') || lower.includes('epic') || lower.includes('voter card')) {
       return 'voter_id';
-    if (lower.includes('booth') || lower.includes('polling') || lower.includes('station'))
+    }
+    if (lower.includes('booth') || lower.includes('polling') || lower.includes('station')) {
       return 'booth';
-    if (lower.includes('evm') || lower.includes('vvpat') || lower.includes('machine'))
+    }
+    if (lower.includes('evm') || lower.includes('vvpat') || lower.includes('machine')) {
       return 'evm_vvpat';
-    if (lower.includes('correction') || lower.includes('mismatch') || lower.includes('error'))
+    }
+    if (lower.includes('correction') || lower.includes('mismatch') || lower.includes('error')) {
       return 'corrections';
-    if (lower.includes('nri') || lower.includes('overseas') || lower.includes('abroad'))
+    }
+    if (lower.includes('nri') || lower.includes('overseas') || lower.includes('abroad')) {
       return 'nri';
-    if (lower.includes('complaint') || lower.includes('cvigil') || lower.includes('violation'))
+    }
+    if (lower.includes('complaint') || lower.includes('cvigil') || lower.includes('violation')) {
       return 'complaints';
-    if (lower.includes('aadhaar') || lower.includes('link'))
+    }
+    if (lower.includes('aadhaar') || lower.includes('link')) {
       return 'aadhaar';
-    if (lower.includes('lost') || lower.includes('duplicate') || lower.includes('deleted'))
+    }
+    if (lower.includes('lost') || lower.includes('duplicate') || lower.includes('deleted')) {
       return 'lost_id';
-    if (lower.includes('senior') || lower.includes('disability') || lower.includes('pwd'))
+    }
+    if (lower.includes('senior') || lower.includes('disability') || lower.includes('pwd')) {
       return 'accessibility';
-    if (lower.includes('postal') || lower.includes('ballot'))
+    }
+    if (lower.includes('postal') || lower.includes('ballot')) {
       return 'postal';
+    }
 
     return 'general';
   }

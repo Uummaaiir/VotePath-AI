@@ -55,7 +55,7 @@ export default function SetupPage() {
   };
 
   return (
-    <div className="min-h-screen bg-bg-dark relative overflow-hidden flex items-center justify-center px-4 py-8">
+    <div className="min-h-screen bg-bg-dark relative overflow-hidden flex items-center justify-center px-4 py-8" role="main" id="main-content" aria-label="Profile setup">
       {/* Background */}
       <div className="fixed inset-0 pointer-events-none">
         <div className="absolute top-[-30%] right-[-10%] w-[600px] h-[600px] rounded-full bg-primary/8 blur-[120px]" />
@@ -75,7 +75,7 @@ export default function SetupPage() {
               <div className="w-14 h-14 rounded-2xl bg-bg-elevated flex items-center justify-center mx-auto mb-3 text-xl shadow-xl shadow-primary/20">
                 👤
               </div>
-              <h2 className="text-xl font-bold gradient-text">Complete Your Profile</h2>
+              <h1 className="text-xl font-bold gradient-text">Complete Your Profile</h1>
               <p className="text-text-muted text-xs mt-1">
                 Hi {user?.name}! Tell us about yourself so we can personalize your voting journey.
               </p>
@@ -100,29 +100,31 @@ export default function SetupPage() {
             </div>
 
             {/* Profile Form */}
-            <form onSubmit={handleSubmit} className="space-y-4">
+            <form onSubmit={handleSubmit} className="space-y-4" aria-label="Voter profile form" noValidate>
               <div className="grid grid-cols-2 gap-3">
                 <div>
-                  <label className="block text-xs text-text-secondary mb-1.5 font-medium">
-                    Age <span className="text-accent">*</span>
+                  <label htmlFor="setup-age" className="block text-xs text-text-secondary mb-1.5 font-medium">
+                    Age <span className="text-accent" aria-hidden="true">*</span><span className="sr-only">(required)</span>
                   </label>
-                  <input type="number" className="input-field" placeholder="e.g. 19" min="17" max="120"
-                    value={formData.age} onChange={e => setFormData({ ...formData, age: e.target.value })} />
+                  <input id="setup-age" type="number" className="input-field" placeholder="e.g. 19" min="17" max="120"
+                    value={formData.age} onChange={e => setFormData({ ...formData, age: e.target.value })}
+                    aria-required="true" autoComplete="off" />
                 </div>
                 <div>
-                  <label className="block text-xs text-text-secondary mb-1.5 font-medium">
-                    <FiMapPin className="inline mr-1" size={12} /> Pincode
+                  <label htmlFor="setup-pincode" className="block text-xs text-text-secondary mb-1.5 font-medium">
+                    <FiMapPin className="inline mr-1" aria-hidden="true" size={12} /> Pincode
                   </label>
-                  <input type="text" className="input-field" placeholder="e.g. 400001"
-                    value={formData.pincode} onChange={e => setFormData({ ...formData, pincode: e.target.value })} />
+                  <input id="setup-pincode" type="text" className="input-field" placeholder="e.g. 400001"
+                    value={formData.pincode} onChange={e => setFormData({ ...formData, pincode: e.target.value })}
+                    autoComplete="postal-code" inputMode="numeric" maxLength={6} />
                 </div>
               </div>
 
               <div>
-                <label className="block text-xs text-text-secondary mb-1.5 font-medium">
-                  State / UT <span className="text-accent">*</span>
+                <label htmlFor="setup-state" className="block text-xs text-text-secondary mb-1.5 font-medium">
+                  State / UT <span className="text-accent" aria-hidden="true">*</span><span className="sr-only">(required)</span>
                 </label>
-                <select className="input-field"
+                <select id="setup-state" className="input-field" aria-required="true"
                   value={formData.state} onChange={e => setFormData({ ...formData, state: e.target.value })}>
                   <option value="">Select your state</option>
                   {INDIAN_STATES.map(s => <option key={s} value={s}>{s}</option>)}
@@ -130,10 +132,10 @@ export default function SetupPage() {
               </div>
 
               <div>
-                <label className="block text-xs text-text-secondary mb-1.5 font-medium">
+                <label htmlFor="setup-voter-status" className="block text-xs text-text-secondary mb-1.5 font-medium">
                   Voter Registration Status
                 </label>
-                <select className="input-field"
+                <select id="setup-voter-status" className="input-field"
                   value={formData.voterStatus} onChange={e => setFormData({ ...formData, voterStatus: e.target.value })}>
                   <option value="unknown">I don't know</option>
                   <option value="not_registered">Not registered</option>
@@ -142,9 +144,10 @@ export default function SetupPage() {
                 </select>
               </div>
 
-              <div className="space-y-2 pt-1">
+              <fieldset className="space-y-2 pt-1 border-0 p-0 m-0">
+                <legend className="sr-only">Additional voter information</legend>
                 <label className="flex items-center gap-2.5 cursor-pointer group">
-                  <input type="checkbox" className="w-4 h-4 accent-primary rounded"
+                  <input id="setup-has-voter-id" type="checkbox" className="w-4 h-4 accent-primary rounded"
                     checked={formData.hasVoterId}
                     onChange={e => setFormData({ ...formData, hasVoterId: e.target.checked })} />
                   <span className="text-text-secondary text-xs group-hover:text-text-primary transition-colors">
@@ -152,14 +155,14 @@ export default function SetupPage() {
                   </span>
                 </label>
                 <label className="flex items-center gap-2.5 cursor-pointer group">
-                  <input type="checkbox" className="w-4 h-4 accent-primary rounded"
+                  <input id="setup-first-time" type="checkbox" className="w-4 h-4 accent-primary rounded"
                     checked={formData.isFirstTimeVoter}
                     onChange={e => setFormData({ ...formData, isFirstTimeVoter: e.target.checked })} />
                   <span className="text-text-secondary text-xs group-hover:text-text-primary transition-colors">
                     This will be my first time voting
                   </span>
                 </label>
-              </div>
+              </fieldset>
 
               <motion.button type="submit" disabled={submitting}
                 className="btn-primary w-full py-3.5 mt-3 shadow-lg shadow-primary/20"

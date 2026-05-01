@@ -59,7 +59,7 @@ class AIService {
 
     this.currentProvider = this.geminiAvailable ? 'gemini'
       : this.mistralAvailable ? 'mistral'
-      : null;
+        : null;
 
     return {
       gemini: this.geminiAvailable,
@@ -134,7 +134,7 @@ class AIService {
       } catch (error) {
         this.stats.geminiFailures++;
         this._setCooldown('gemini', error);
-        console.error(`❌ Gemini failed:`, error.message);
+        console.error('❌ Gemini failed:', error.message);
       }
     }
 

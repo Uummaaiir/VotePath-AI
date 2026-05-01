@@ -44,6 +44,12 @@ describe('Security Audit — Production Hardening', () => {
       const res = await request(app).get('/api/health');
       expect(res.headers['x-powered-by']).toBeUndefined();
     });
+
+    it('should set Content-Security-Policy header', async () => {
+      const res = await request(app).get('/api/health');
+      expect(res.headers['content-security-policy']).toBeDefined();
+      expect(res.headers['content-security-policy']).toContain("default-src 'self'");
+    });
   });
 
   // ── JWT Authentication Security ──────────────────────────────
@@ -128,6 +134,8 @@ describe('Security Audit — Production Hardening', () => {
       expect(res.status).toBe(200);
       expect(res.body.security).toBeDefined();
       expect(res.body.security.helmet).toBe(true);
+      expect(res.body.security.csp).toBe(true);
+      expect(res.body.security.hpp).toBe(true);
       expect(res.body.security.rateLimiting).toBe(true);
       expect(res.body.security.mongoSanitize).toBe(true);
       expect(res.body.security.jwtAuth).toBe(true);
@@ -148,6 +156,23 @@ describe('Security Audit — Production Hardening', () => {
         .set('Authorization', `Bearer ${token}`)
         .send(largePayload);
       expect([413, 400, 500]).toContain(res.status);
+    });
+  });
+
+  // ── HPP Prevention ─────────────────────────────────────
+  describe('HTTP Parameter Pollution (HPP) Prevention', () => {
+    it('should not crash on duplicate query parameters', async () => {
+      const res = await request(app)
+        .get('/api/health?status=ok&status=bad&status=evil');
+      expect(res.status).toBe(200);
+      expect(res.body.success).toBe(true);
+    });
+
+    it('should handle array-style query params gracefully', async () => {
+      const res = await request(app)
+        .get('/api/health?foo[]=1&foo[]=2&foo[]=3');
+      expect([200, 400]).toContain(res.status);
+      expect(res.body).toHaveProperty('success');
     });
   });
 
